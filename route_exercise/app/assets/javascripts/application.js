@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require js.cookie
 //= require_tree .
+//= require bootstrap-sprockets

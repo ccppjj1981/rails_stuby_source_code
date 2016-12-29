@@ -31,8 +31,11 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
+        Rails.logger.info("=============error")
         format.html { render :new }
+        Rails.logger.info("=============error2")
         format.json { render json: @product.errors, status: :unprocessable_entity }
+        Rails.logger.info("=============error3")
       end
     end
   end

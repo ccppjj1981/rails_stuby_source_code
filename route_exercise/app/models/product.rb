@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  validates :price ,numericality: true
   has_many :likes
   def liked_count
   self.likes.size

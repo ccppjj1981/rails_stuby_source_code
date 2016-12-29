@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :products do
-    resources :likes
+    resources :likes, shallow: true
   end
 
   root "products#index"

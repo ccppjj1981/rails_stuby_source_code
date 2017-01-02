@@ -20,6 +20,10 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.json { render json: @product, status: :ok, location: @product }
+    end
   end
 
   # POST /products
@@ -35,6 +39,7 @@ class ProductsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -60,6 +65,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

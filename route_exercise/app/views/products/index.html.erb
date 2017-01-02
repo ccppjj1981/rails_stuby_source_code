@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
-
+<% a="fdsf" %>
+<p><%= a %></p>
 <h1>Products</h1>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
+        <th><%= t 'product.name'%></th>
+        <th><%= t 'product.price'%></th>
+        <th><%= t 'product.description'%></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -27,7 +28,7 @@
     <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-           <h4 class="modal-title">添加一个商品s</h4>
+           <h4 class="modal-title">添加一个商品</h4>
         </div>
         <div class="modal-body">
           <%= render partial: "f", locals: {f: f} %>
@@ -41,8 +42,47 @@
     <% end %>
   </div>
 </div>
-<script>
-  $('#newProductFormModal').modal({
-    show: false,
-  })
-</script>
+
+<div class="modal fade" id="editProductFormModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_tag "", method: :put, remote: true, data: { type: "json" }, id: "editProductForm", class: "form-horizontal" do %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+          <h4 class="modal-title">编辑一个商品</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-dismissible alert-danger" id="alert-content">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <div id="msg"></div>
+          </div>
+          <div class="form-group">
+            <%= label_tag "product[name]", "#{t 'product.name'}", :class => 'control-label' %>
+            <%= text_field_tag "product[name]", "", :class => 'form-control', id: "editProductName", required: true %>
+          </div>
+          <div class="form-group">
+            <%= label_tag "product[description]", "#{t 'product.description'}", :class => 'control-label' %>
+            <%= text_field_tag "product[description]", "", :class => 'form-control', id: "editProductDescription" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag "product[price]", "#{t 'product.price'}", :class => 'control-label' %>
+            <%= text_field_tag "product[price]", "", :class => 'form-control', id: "editProductPrice" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to '取消', '#', :class => 'btn btn-default', data: {dismiss: "modal"} %>
+          <%= submit_tag '确定', :class => 'btn btn-primary', :data => { :"disable-with" => "请稍等..." } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= content_for :page_javascript do %>
+  <%= javascript_include_tag "products" %>
+  <script>
+    $('#newProductFormModal').modal({
+      show: false,
+    })
+  </script>
+<%end%>

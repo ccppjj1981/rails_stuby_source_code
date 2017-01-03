@@ -4,6 +4,7 @@
 jQuery ->
   $(".editProductLink")
     .on "ajax:success", (e, data, status, xhr) ->
+      console.log("editProductLink")
       $('#alert-content').hide()
       $('#editProductFormModal').modal('show')
       $('#editProductName').val(data['name'])
@@ -14,6 +15,8 @@ jQuery ->
 
   $("#editProductForm")
     .on "ajax:success", (e, data, status, xhr) ->
+      console.log("editProductForm")
+      console.log('#product_'+data['id']+'_name')
       $('#editProductFormModal').modal('hide')
       $('#product_'+data['id']+'_name').html(  data['name'] )
       $('#product_'+data['id']+'_description').html(  data['description'] )
@@ -21,3 +24,8 @@ jQuery ->
     .on "ajax:error", (e, xhr, status, error) ->
       $('#alert-content').show()
       $('#alert-content #msg').html( xhr.responseText )
+  $("#newProductForm")
+    .on "ajax:success", (e, data, status, xhr) ->
+      console.log("newProductLink")
+      $('#newProductFormModal').modal('hide')
+      $('#newProductForm')[0].reset()

@@ -1,0 +1,8 @@
+<tr id="product_<%= product.id %>">
+  <td id="product_<%= product.id %>_name"><%= product.name %></td>
+  <td><%= product.price %></td>
+  <td><%= product.description %></td>
+  <td><%= link_to 'Show', product %></td>
+  <td><%= button_to 'edit',edit_product_path(product) ,method: :edit,remote: true, class: "button editProductLink",type: 'submit' %></td>
+  <td><%= link_to 'Destroy', product, method: :delete, remote: true,data: { confirm: 'Are you sure?' } %></td>
+</tr>

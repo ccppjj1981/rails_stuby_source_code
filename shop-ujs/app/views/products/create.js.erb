@@ -1,0 +1,10 @@
+//j去掉无法定位
+<% if @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    alert('<%= message %>')
+  <% end %>
+<%else%>
+  $('#productsTable').prepend('<%= j render(@product) %>');
+  $('#newProductFormModal').modal('hide');
+  $('#newProductForm')[0].reset();
+<%end%>

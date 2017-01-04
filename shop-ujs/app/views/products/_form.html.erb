@@ -1,0 +1,20 @@
+<%= form_for(product) do |f| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= render partial: "f", locals: {f: f} %>
+  <div class ="form-group">
+    <div class="actions">
+      <%= f.submit nil,remote: true,id: "product-submit",class: "btn btn-primary" ,
+          value: '新建商品',:data => { :"disable-with" => "请稍等..." }%>
+    </div>
+  </div>
+<% end %>

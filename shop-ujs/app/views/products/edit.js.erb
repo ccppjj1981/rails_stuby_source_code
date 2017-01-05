@@ -1,0 +1,12 @@
+function show_edit_form() {
+  $('#editProductFormModal').modal('show');
+  $('#alert-content').hide()
+  $('#editProductName').val('<%= @product.name %>');
+  $('#editProductDescription').val('<%= @product.description %>');
+  $('#editProductPrice').val('<%= @product.price %>');
+  $("#editProductForm").attr('action', '/products/'+ '<%= @product.id %>');
+}
+show_edit_form();
+//$('.editSubmit').click(function(e) {
+ //console.log("editSubmit")
+//});

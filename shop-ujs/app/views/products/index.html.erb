@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-notice"><%= notice %></div>
 <h1>Products</h1>
 <div class="table-responsive">
   <table class="table table-striped">
@@ -20,7 +20,6 @@
 
 <%= link_to '新建商品', new_product_path,
   :class => 'btn btn-primary',data: {toggle: "modal", target: "#newProductFormModal"} %>
-<%= will_paginate @products %>
 <div class="modal fade" id="newProductFormModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <%= form_for @product, remote: true,:html => { :class => 'form-horizontal', id: "newProductForm" } do |f| %>
@@ -35,7 +34,7 @@
         <div class="modal-footer">
           <%= link_to "取消", '#', :class => 'btn btn-default', data: {dismiss: "modal"} %>
 
-          <%= f.submit nil,:class => 'btn btn-primary', :data => { :"disable-with" => "请稍等..." } %>
+          <%= f.submit nil,value:'新建商品',:class => 'btn btn-primary', :data => { :"disable-with" => "请稍等..." } %>
         </div>
       </div>
     <% end %>
@@ -87,3 +86,6 @@
     })
   </script>
 <%end%>
+<div container>
+  <%= will_paginate @products %>
+</div>

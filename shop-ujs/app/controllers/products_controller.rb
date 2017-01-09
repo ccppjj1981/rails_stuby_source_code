@@ -6,10 +6,11 @@ class ProductsController < ApplicationController
   def index
     #@products = Product.all
     ## perform a paginated query:
-    @products = Product.paginate(:page => params[:page])
+
+    @products = Product.paginate(:page => params[:page],:per_page => 2)
     @product = Product.new
     # or, use an explicit "per page" limit:
-    Product.paginate(:page => params[:page], :per_page => 30)
+    #Product.paginate(:per_page => 1)
   end
 
   # GET /products/1

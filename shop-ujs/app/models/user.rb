@@ -3,5 +3,6 @@ class User < ApplicationRecord
   validates:email,presence: true,length:{maximum:255},
                         format:     { with: VALID_EMAIL_REGEX }
   ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED = 3
+  has_many :products
   has_secure_password
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106141834) do
+ActiveRecord::Schema.define(version: 20170110082548) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "product_id"
@@ -23,8 +23,11 @@ ActiveRecord::Schema.define(version: 20170106141834) do
     t.string   "name"
     t.decimal  "price"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["user_id", "created_at"], name: "index_products_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,6 +37,14 @@ ActiveRecord::Schema.define(version: 20170106141834) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "role"
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.integer  "product_id"
+    t.decimal  "price",      precision: 8, scale: 2
+    t.string   "size"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

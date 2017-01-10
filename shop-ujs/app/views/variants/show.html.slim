@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Product:
+  = @variant.product_id
+p
+  strong Price:
+  = @variant.price
+p
+  strong Size:
+  = @variant.size
+
+= link_to 'Edit', edit_variant_path(@variant)
+'|
+= link_to 'Back', variants_path

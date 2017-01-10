@@ -35,7 +35,10 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    puts "=======#{params[:user_id]}"
+    @user = User.find(params[:user_id])
+    @product = @user.products.build(product_params)
+     #@product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save

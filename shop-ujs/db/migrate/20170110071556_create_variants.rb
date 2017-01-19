@@ -1,11 +1,10 @@
 class CreateVariants < ActiveRecord::Migration[5.0]
   def change
     create_table :variants do |t|
-      t.integer :product_id
-      t.decimal :price, precision: 8, scale: 2
+      t.references :product, index: true, foreign_key: true
+      t.decimal :price
       t.string :size
-
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

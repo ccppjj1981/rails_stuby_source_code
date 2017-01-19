@@ -1,14 +1,17 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  include SessionsHelper
   # GET /products
-  # GET /products.json
+  # GET /products.jsons
   def index
     #@products = Product.all
     ## perform a paginated query:
-
-    @products = Product.paginate(:page => params[:page],:per_page => 2)
     @product = Product.new
+    unless current_user.nil?
+      @products = current_user.products.paginate(:page => params[:page],:per_page => 2)
+    end
+    #@products = Product.paginate(:page => params[:page],:per_page => 2)
+    
     # or, use an explicit "per page" limit:
     #Product.paginate(:per_page => 1)
   end
@@ -35,9 +38,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    puts "=======#{params[:user_id]}"
-    @user = User.find(params[:user_id])
-    @product = @user.products.build(product_params)
+    #@user = User.find(params[:user_id])
+    @product = current_user.products.build(product_params)
      #@product = Product.new(product_params)
 
     respond_to do |format|

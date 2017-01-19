@@ -12,7 +12,7 @@ module RouteExercise
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.available_locales = [:en, :'zh-CN']
-    config.i18n.default_locale = (ENV['LOCALE'] || 'zh-CN').to_sym
+    config.i18n.default_locale = :en #(ENV['LOCALE'] || 'zh-CN').to_sym
     config.time_zone = 'Beijing'
   end
 end

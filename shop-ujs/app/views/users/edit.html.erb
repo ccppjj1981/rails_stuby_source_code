@@ -1,8 +1,9 @@
-<h1>Update your profile</h1>
+<h1> 编辑用户信息</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
       <%= form_for(@user) do |f| %>
           <%= render 'shared/error_messages' %>
+          <% @user.build_address if @user.address.nil? %>
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
           <%= f.label :email %>
@@ -11,6 +12,28 @@
           <%= f.password_field :password, class: 'form-control' %>
           <%= f.label :password_confirmation, "Confirmation" %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <%= f.fields_for :address do |address_form| %>
+            <%= address_form.hidden_field :id %>
+            <hr>
+            <div class="form-group">
+              <%= address_form.label :state, class: "control-label" %><br />
+              <%= address_form.text_field :state, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= address_form.label :city, class: "control-label" %><br />
+              <%= address_form.text_field :city, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= address_form.label :address, class: "control-label" %><br />
+              <%= address_form.text_field :address, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= address_form.label :phone, class: "control-label" %><br />
+              <%= address_form.text_field :phone, class: "form-control" %>
+            </div>
+      
+          <%end%>
           <%= f.submit "Save changes", class: "btn btn-primary" %> 
       <% end %>
   </div>

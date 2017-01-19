@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110082548) do
+ActiveRecord::Schema.define(version: 20170117134757) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "state"
+    t.string   "city"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "zipcode"
+    t.string   "receiver"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_likes_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "number"
+    t.string   "payment_state"
+    t.string   "shipment_state"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -41,10 +65,11 @@ ActiveRecord::Schema.define(version: 20170110082548) do
 
   create_table "variants", force: :cascade do |t|
     t.integer  "product_id"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.decimal  "price"
     t.string   "size"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_variants_on_product_id"
   end
 
 end

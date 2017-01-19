@@ -12,7 +12,9 @@
     </thead>
 
     <tbody id = "productsTable">
-      <%=render @products%>
+      <%if @products%>
+        <%=render @products%>
+      <%end%>
     </tbody>
   </table>
 </div>
@@ -86,6 +88,8 @@
     })
   </script>
 <%end%>
-<div container>
-  <%= will_paginate @products %>
-</div>
+<%if @products%>
+  <div container>
+    <%= will_paginate @products %>
+  </div>
+<%end%>

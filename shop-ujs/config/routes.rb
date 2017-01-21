@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
-
+  resources :tickets
   resources :variants
   get 'sessions/new'
 

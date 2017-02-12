@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119154004) do
+ActiveRecord::Schema.define(version: 20170208074451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,30 @@ ActiveRecord::Schema.define(version: 20170119154004) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "total"
+    t.string   "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_likes_on_product_id", using: :btree
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.decimal  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -53,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170119154004) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.json     "avatars"
     t.index ["user_id", "created_at"], name: "index_products_on_user_id_and_created_at", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
@@ -70,9 +90,10 @@ ActiveRecord::Schema.define(version: 20170119154004) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "role"
+    t.boolean  "admin",           default: false
   end
 
   create_table "variants", force: :cascade do |t|

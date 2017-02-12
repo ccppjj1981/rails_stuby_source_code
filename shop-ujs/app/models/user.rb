@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :products
   has_many :orders
+  has_one  :cart
   has_one :address,
     dependent: :destroy
   accepts_nested_attributes_for :address
@@ -17,6 +18,7 @@ class User < ApplicationRecord
 
   validates :email,
     presence: true,
+    uniqueness: true,
     length: { maximum:255 }
   # callbacks .................................................................
   # scopes ....................................................................

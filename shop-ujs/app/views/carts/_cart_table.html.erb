@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t 'product.name'%></th>
+        <th><%= t 'product.price'%></th>
+        <th><%= t 'product.description'%></th>
+        <th><%= t 'product.quantity'%></th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody id = "productsTable">
+      <%if @cart%>
+        <%=render @cart%>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+<h5> <%= t 'common.total' %></h5>
+<span class="label label-success"><%= @cart.total %></span>

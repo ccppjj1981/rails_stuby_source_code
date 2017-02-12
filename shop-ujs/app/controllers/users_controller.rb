@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
   def update
 
-    Rails.logger.info("user_params===#{user_params.inspect}")
+    #Rails.logger.info("user_params===#{user_params.inspect}")
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'user was successfully updated.' }

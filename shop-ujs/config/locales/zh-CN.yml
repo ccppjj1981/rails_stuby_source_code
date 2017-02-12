@@ -3,3 +3,5 @@ zh-CN:
    name: "名称"
    price: "价格"
    description: "描述"
+   quantity: "数量"
+ 

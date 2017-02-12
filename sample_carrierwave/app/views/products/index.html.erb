@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<div class= "panel panel-primary">
+  <div class= "panel-heading">
+  <h3 class = "panel-title">商品列表</h3>
+  </div>
+  <div class= "panel-body">
+    <div class="row">
+      <% @products.each do |product| %>
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img class='img-responsive' src="<%= product.avatar.url%>" alt="logo">
+              <div class="caption">
+                <div class= 'well well-sm'>商品名：
+                  <span class = 'badge'> <%= product.name %></span>
+                </div>
+                <div class= 'well well-sm'>价格:<span class = 'badge'> <%= product.price %></span></div>
+                <p>
+                  <a href=<%= edit_product_path(product)%> class="btn btn-primary" role="button">编辑</a> 
+                  <a href=<%= product %> class="btn btn-danger" role="button" data-method = 'delete'
+                      data-confirm = "Are you sure?">delete</a>
+                </p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to 'New Product', new_product_path %>

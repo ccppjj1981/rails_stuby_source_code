@@ -6,3 +6,5 @@ zh-CN:
     cart_list: "购物车列表"
     total: "合计"
     cart_delete: "从购物车中删除"
+    account: '结算'
+    my_order: '我的订单'

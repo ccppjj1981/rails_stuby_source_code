@@ -17,5 +17,14 @@
     </tbody>
   </table>
 </div>
-<h5> <%= t 'common.total' %></h5>
-<span class="label label-success"><%= @cart.total %></span>
+
+<h5> <%= t 'common.total' %>: 
+  <span id = "cart_total" class="label label-success">
+    <%= @cart.total %>
+  </span>
+</h5>
+
+<%= form_tag(order_path) do -%>
+  <%= hidden_field_tag :cart_id,@cart.id %>
+  <%= submit_tag t('common.account') %>
+<% end -%>

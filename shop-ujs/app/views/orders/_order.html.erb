@@ -1,0 +1,29 @@
+<div class= "panel-heading">
+  <h3 class = "panel-title"><%= order.created_at.strftime("%Y年 %m 月 %d 日 %H:%M:%S")%></h3>
+</div>
+<div class= "panel-body">
+  	<table class="table">
+	  	<thead>
+	      <tr>
+	        <th><%= t 'product.name'%></th>
+	        <th><%= t 'product.price'%></th>
+	        <th><%= t 'product.description'%></th>
+	        <th><%= t 'product.quantity'%></th>
+	        <th colspan="4"></th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	      <% order.order_items.each do |order_item| %>
+				<tr>
+					<% product = Product.find(order_item.product_id) %>
+					<td><%= product.name %></td>
+					<td><%= product.price %></td>
+					<td><%= product.description %></td>
+					<td><%= order_item.quantity  %></td>
+				</tr>
+		   <%end%>
+	    </tbody>
+    </table>
+ </div>
+ <p>实付款：<%= order.total %> 总数量：<%= order.quantity %></p>

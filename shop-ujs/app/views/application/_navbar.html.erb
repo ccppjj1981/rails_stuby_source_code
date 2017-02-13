@@ -10,7 +10,7 @@
     <% if @current_user %>
          <ol class="breadcrumb">
           <li><%= link_to '商品',products_path %></li>
-          <li><a href="#">我的订单</a></li>
+          <li><%= link_to t('common.my_order'),order_path%></li>
           <li><%= link_to '购物车', cart_path%></li>
          </ol>
 

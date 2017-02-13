@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #get 'cart/index'
   #get 'carts/:id',to: 'cart#index',as: 'cart'
   resource :cart
+  resource :order
   resources :products do
     resources :likes, shallow: true
   end
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   root "home#index"
   namespace :api do
-    resource :line_item
+    resources :line_items
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

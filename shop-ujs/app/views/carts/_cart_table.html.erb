@@ -1,30 +1,29 @@
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><%= t 'product.name'%></th>
-        <th><%= t 'product.price'%></th>
-        <th><%= t 'product.description'%></th>
-        <th><%= t 'product.quantity'%></th>
-        <th colspan="4"></th>
-      </tr>
-    </thead>
+<%= form_tag(orders_path) do -%>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>购买</th>
+          <th><%= t 'product.name'%></th>
+          <th><%= t 'product.price'%></th>
+          <th><%= t 'product.description'%></th>
+          <th><%= t 'product.quantity'%></th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
 
-    <tbody id = "productsTable">
-      <%if @cart%>
-        <%=render @cart%>
-      <%end%>
-    </tbody>
-  </table>
-</div>
-
+      <tbody id = "productsTable">
+        <%if @cart%>
+          <%=render @cart%>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+  <%= hidden_field_tag :cart_id,@cart.id %>
+  <%= submit_tag t('common.account') %>
+<% end -%>
 <h5> <%= t 'common.total' %>: 
   <span id = "cart_total" class="label label-success">
     <%= @cart.total %>
   </span>
 </h5>
-
-<%= form_tag(order_path) do -%>
-  <%= hidden_field_tag :cart_id,@cart.id %>
-  <%= submit_tag t('common.account') %>
-<% end -%>

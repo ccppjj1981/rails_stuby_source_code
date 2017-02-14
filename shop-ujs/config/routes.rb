@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #get 'cart/index'
   #get 'carts/:id',to: 'cart#index',as: 'cart'
   resource :cart
-  resource :order
+  resources :orders
   resources :products do
     resources :likes, shallow: true
   end
